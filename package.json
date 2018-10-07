@@ -1,0 +1,29 @@
+{
+  "name": "crypto-cli",
+  "version": "0.0.1",
+  "description": "A CLI to communicate with a cryptographic service API.",
+  "engines": {
+    "node": ">=8.10"
+  },
+  "main": "./bin/index.js",
+  "bin": {
+    "crypto-client": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NaCL",
+    "cryptography",
+    "CLI",
+    "libsodium"
+  ],
+  "author": "Johan Peeters",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "commander": "^2.18.0",
+    "libsodium-wrappers": "^0.7.3",
+    "node-persist": "^3.0.1"
+  }
+}
