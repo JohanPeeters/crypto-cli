@@ -6,9 +6,9 @@ program
   .action(async (plaintext, api, cmd) => {
     let apiPublicKey
     try {
-      apiPublicKey = await network.getPublicKey(api, cmd.apiKey)
+      apiPublicKey = await network.getPublicKey(api, 'encryption', cmd.apiKey)
     } catch(e) {
-      throw('no public key')
+      throw('no public encryption key')
     }
     const ciphertext = await crypto.encrypt(plaintext, apiPublicKey)
     console.log(`plaintext "${plaintext}" encrypts to "${ciphertext}"`)
