@@ -31,9 +31,11 @@ The body of the POST request sent by `verify-decrypt` is a JSON object with a `c
 {
   "ciphertext": "xg5mUtoF1y+f5Xv57IqEHBcKhLB9",
   "nonce": "fbEc+UEAXDBg3rZ4lpzcJppVis1NfQuy",
-  "publickey": "YX2k2EpoLhF6PxfyT6+oa7ulH8g6YGDSqnXfErU003M="
+  "publickey": "YX2k2EpoLhF6PxfyT6+oa7ulH8g6YGDSqnXfErU003M"
 }
 ```
+
+Note that all binary data is base64 encoded so that it can be transported via the network. In other words, all have the request data field values are the result of calling libsodium `to_base64` on the respective binary data.
 
 ### `verify-sign`
 
@@ -46,6 +48,10 @@ The body of the POST request sent by `verify-sign` is a JSON object with a `mess
 }
 ```
 
+A digital signature is binary. The test tool expects it in base64 encoded format.
+
 ### `public-key`
 
 `crypto_box_easy` and `crypto_sign_open` respectively make use of the public encryption key and the public verification key of the API under test. So, in order for the 2 above tests to succeed, these have to be made available, which can be verified with the `public-key` command.
+
+Public keys are binary, meaning that they can contain any sequence of bits. As such, they may not be suitable for transport across a network in their raw form and hence need to be encoded. This test tool assumes that the API returns them base64 encoded. In other words, it calls libsodium `from_base64` on the retrieved keys.
