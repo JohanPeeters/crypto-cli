@@ -29,7 +29,9 @@ The `msg` parameter is encrypted with the libsodium `crypto_box_easy` function a
 The body of the POST request sent by `verify-decrypt` is a JSON object with a `ciphertext` field. For example:
 ```sh
 {
-  "ciphertext": "xg5mUtoF1y+f5Xv57IqEHBcKhLB9"
+  "ciphertext": "xg5mUtoF1y+f5Xv57IqEHBcKhLB9",
+  "nonce": "fbEc+UEAXDBg3rZ4lpzcJppVis1NfQuy",
+  "publickey": "YX2k2EpoLhF6PxfyT6+oa7ulH8g6YGDSqnXfErU003M="
 }
 ```
 
