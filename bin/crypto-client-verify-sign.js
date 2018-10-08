@@ -12,7 +12,7 @@ program
         return
       }
     } catch(e) {
-      console.log(e)
+      console.log(e.message)
     }
     console.log('test fails')
   })
