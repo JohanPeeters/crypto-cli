@@ -24,11 +24,25 @@ What does `crypto-client` test?
 
 ### `verify-decrypt`
 
-The `msg` parameter is encrypted with the libsodium `crypto_box_easy` function and sent to `<api>/decrypt` base64 encoded. If the endpoint returns `msg`, the test succeeds. Otherwise it fails.
+The `msg` parameter is encrypted with the libsodium `crypto_box_easy` function and sent in a POST request to `<api>/decrypt` base64 encoded. If the endpoint returns `msg`, the test succeeds. Otherwise it fails.
+
+The body of the POST request sent by `verify-decrypt` is a JSON object with a `ciphertext` field. For example:
+```sh
+{
+  "ciphertext": "xg5mUtoF1y+f5Xv57IqEHBcKhLB9"
+}
+```
 
 ### `verify-sign`
 
 The `msg` parameter is sent to `<api>/sign`. The test succeeds if libsodium's `crypto_sign_open` succeeds.
+
+The body of the POST request sent by `verify-sign` is a JSON object with a `message` field. For example:
+```sh
+{
+  "message": "hello"
+}
+```
 
 ### `public-key`
 
