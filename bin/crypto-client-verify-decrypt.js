@@ -20,6 +20,7 @@ program
           api,
           cmd.apiKey
         )
+      console.log(`${plaintext} decrypted as ${decipheredtext}`)
       if (plaintext == decipheredtext) {
         console.log('test succeeds')
         return
