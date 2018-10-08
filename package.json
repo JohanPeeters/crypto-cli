@@ -1,10 +1,11 @@
 {
   "name": "crypto-assignment-check",
-  "version": "0.1.0",
+  "version": "0.0.3",
   "description": "A CLI to check the EhB crypto assignment.",
   "engines": {
     "node": ">=8.10"
   },
+  "repository": "github:JohanPeeters/crypto-cli",
   "main": "./bin/index.js",
   "bin": {
     "crypto-client": "./bin/index.js"
