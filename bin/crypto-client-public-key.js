@@ -7,6 +7,7 @@ program
     try {
       key = await getPublicKey(url, type, cmd.apiKey)
     } catch(e) {
+      console.log(e)
     }
     if (key) console.log(key)
   })

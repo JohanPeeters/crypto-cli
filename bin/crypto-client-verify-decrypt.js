@@ -1,27 +1,31 @@
 const program = require('commander')
+const nacl = require('libsodium-wrappers')
 const crypto = require('../lib/crypto')
 const network = require('../lib/network')
+const storage = require('../lib/storage')
 
 program
   .action(async (plaintext, api, cmd) => {
-    let apiPublicKey
     try {
-      apiPublicKey = await network.getPublicKey(api, 'encryption', cmd.apiKey)
-    } catch(e) {
-      throw('no public encryption key')
-    }
-    const ciphertext = await crypto.encrypt(plaintext, apiPublicKey)
-    console.log(`plaintext "${plaintext}" encrypts to "${ciphertext}"`)
-    let decipheredtext
-    try {
-      decipheredtext = await network.decrypt(ciphertext, api, cmd.apiKey)
-      console.log(`API decrypts "${ciphertext}" as "${decipheredtext}"`)
+      const apiPublicKey = await network.getPublicKey(api, 'encryption', cmd.apiKey)
+      const nonce = nacl.randombytes_buf(nacl.crypto_box_NONCEBYTES)
+      const ciphertext = await crypto.encrypt(plaintext, nonce, apiPublicKey)
+      const keyPair = await storage.retrieveKeyPair()
+      const myPublicKey = keyPair.publicKey
+      const decipheredtext =
+        await network.decrypt(
+          ciphertext,
+          nacl.to_base64(nonce),
+          myPublicKey,
+          api,
+          cmd.apiKey
+        )
       if (plaintext == decipheredtext) {
         console.log('test succeeds')
         return
       }
     } catch(e) {
-      console.log('decryption service did not return')
+      console.log(e)
     }
     console.log('test fails')
   })
