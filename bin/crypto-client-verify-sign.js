@@ -7,7 +7,9 @@ program
     try {
       const apiPublicKey = await network.getPublicKey(api, 'signing', cmd.apiKey)
       const signedtext = await network.sign(plaintext, api, cmd.apiKey)
-      if (crypto.verify(plaintext, signedtext)) {
+      const recoveredPlaintext = await crypto.verify(signedtext, apiPublicKey)
+      console.log(`${recoveredPlaintext} was signed`)
+      if (recoveredPlaintext == plaintext) {
         console.log('test succeeds')
         return
       }
