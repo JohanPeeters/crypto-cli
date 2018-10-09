@@ -1,6 +1,6 @@
 {
   "name": "crypto-assignment-check",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A CLI to check the EhB crypto assignment.",
   "engines": {
     "node": ">=8.10"
