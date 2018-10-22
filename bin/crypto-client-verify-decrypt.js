@@ -10,7 +10,7 @@ program
       const apiPublicKey = await network.getPublicKey(api, 'encryption', cmd.apiKey)
       const nonce = nacl.randombytes_buf(nacl.crypto_box_NONCEBYTES)
       const ciphertext = await crypto.encrypt(plaintext, nonce, apiPublicKey)
-      const keyPair = await storage.retrieveKeyPair()
+      const keyPair = await crypto.myKeyPair()
       const myPublicKey = keyPair.publicKey
       const decipheredtext =
         await network.decrypt(
