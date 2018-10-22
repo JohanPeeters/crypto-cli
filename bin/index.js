@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const package = require('../package.json')
 
 program
-  .version('0.0.1', '-v, --version')
+  .version(package.version, '-v, --version')
   .command('public-key <api> <type>', 'get the public <type> key. <type> is encryption or signing')
   .command('myKeyPair', 'generate or retrieve own key pair')
   .command('verify-decrypt <msg> <api>', 'locally encrypt <msg> asymmetrically and request <api>/decrypt to decrypt')
