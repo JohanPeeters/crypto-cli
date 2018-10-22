@@ -50,6 +50,17 @@ The body of the POST request sent by `verify-sign` is a JSON object with a `mess
 
 A digital signature is binary. The test tool expects it in base64 encoded format.
 
+### `verify-password-hash`
+
+The `pw` parameter is sent to `<api>/pwhash-str`. The test succeeds if libsodium's `crypto_verify_pwhash_str` succeeds.
+
+The body of the POST request sent by `verify-password-hash` is a JSON object with a `pw` field. For example:
+```sh
+{
+  "pw": "hello"
+}
+```
+
 ### `public-key`
 
 `crypto_box_easy` and `crypto_sign_open` respectively make use of the public encryption key and the public verification key of the API under test. So, in order for the 2 above tests to succeed, these have to be made available, which can be verified with the `public-key` command.
