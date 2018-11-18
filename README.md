@@ -5,7 +5,7 @@ This is a CLI utility for testing the crypto REST API students at EhB are buildi
 ## Install
 
 ```sh
-$ npm install crypto-assignment-check
+$ npm install -g crypto-assignment-check
 ```
 
 ## Usage
