@@ -10,7 +10,7 @@ $ npm install -g crypto-assignment-check
 
 ## Usage
 
-The CLI command is `crypto-client`. There is a subcommand for each endpoint of the APIs under test and an additional one for managing the keys of the test client.
+The CLI command is `crypto-client`. There is a subcommand for each endpoint of the APIs under test.
 
 For help
 
