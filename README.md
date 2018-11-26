@@ -18,13 +18,14 @@ For help
 ```sh
 $ crypto-client help
 ```
+
 or, with Docker
 
 ```
-$ docker run yopeeters/crypto-cli:v1.3.1 help
+$ docker run yopeeters/crypto-cli:v1.4.1 help
 ```
 
-All subcommands options and arguments need to be appended to the Docker command-line prefix `docker run yopeeters/crypto-cli:v1.4.0`.
+All subcommands options and arguments need to be appended to the Docker command-line prefix `docker run yopeeters/crypto-cli:v1.4.1`.
 
 ## Test specifications
 
