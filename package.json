@@ -10,9 +10,6 @@
   "bin": {
     "crypto-client": "./bin/index.js"
   },
-  "scripts": {
-    "test": "mocha --watch test/**/**.js"
-  },
   "keywords": [
     "NaCL",
     "cryptography",
