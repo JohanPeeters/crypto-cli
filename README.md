@@ -7,6 +7,7 @@ This is a CLI utility for testing the crypto REST API students at EhB are buildi
 ```sh
 $ npm install -g crypto-assignment-check
 ```
+If you are using the Docker image, you can skip this step.
 
 ## Usage
 
@@ -17,6 +18,13 @@ For help
 ```sh
 $ crypto-client help
 ```
+or, with Docker
+
+```
+$ docker run yopeeters/crypto-cli:v1.3.1 help
+```
+
+All subcommands options and arguments need to be appended to the Docker command-line prefix `docker run yopeeters/crypto-cli:v1.3.1`.
 
 ## Test specifications
 
