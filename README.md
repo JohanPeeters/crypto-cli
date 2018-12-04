@@ -17,6 +17,18 @@ For help
 
 ```sh
 $ crypto-client help
+Usage: crypto-client [options] [command]
+
+Options:
+  -v, --version                    output the version number
+  -h, --help                       output usage information
+
+Commands:
+  public-key <api> <type>          get the public <type> key. <type> is encryption or signing
+  verify-decrypt <msg> <api>       locally encrypt <msg> asymmetrically and request <api>/decrypt to decrypt
+  verify-sign <msg> <api>          request signature on <msg> at <api>/sign to sign
+  verify-password-hash <pw> <api>  request the Argon2 hash of <pw> for storage
+  help [cmd]                       display help for [cmd]
 ```
 
 or, with Docker
@@ -25,7 +37,7 @@ or, with Docker
 $ docker run yopeeters/crypto-cli:v1.4.1 help
 ```
 
-All subcommands options and arguments need to be appended to the Docker command-line prefix `docker run yopeeters/crypto-cli:v1.4.1`.
+All subcommands options and arguments need to be appended to the Docker command-line prefix `docker run yopeeters/crypto-cli`.
 
 ## Test specifications
 
@@ -38,13 +50,13 @@ The `msg` parameter is encrypted with the libsodium `crypto_box_easy` function a
 The body of the POST request sent by `verify-decrypt` is a JSON object with a `ciphertext` field. For example:
 ```sh
 {
-  "ciphertext": "xg5mUtoF1y+f5Xv57IqEHBcKhLB9",
-  "nonce": "fbEc+UEAXDBg3rZ4lpzcJppVis1NfQuy",
-  "publickey": "YX2k2EpoLhF6PxfyT6+oa7ulH8g6YGDSqnXfErU003M"
+  "ciphertext": "xg5mUtoF1y-f5Xv57IqEHBcKhLB9",
+  "nonce": "fbEc-UEAXDBg3rZ4lpzcJppVis1NfQuy",
+  "publickey": "YX2k2EpoLhF6PxfyT6-oa7ulH8g6YGDSqnXfErU003M"
 }
 ```
 
-Note that all binary data is base64 encoded so that it can be transported via the network. In other words, all have the request data field values are the result of calling the `to_base64` libsodium function on the respective binary data with the default variant: URLSAFE_NO_PADDING.
+Note that all binary data is base64 encoded so that it can be transported via the network. In other words, all the request data field values are the result of calling the `to_base64` libsodium function on the respective binary data with the default variant: URLSAFE_NO_PADDING.
 
 ### `verify-sign`
 
@@ -69,6 +81,8 @@ The body of the POST request sent by `verify-password-hash` is a JSON object wit
   "pw": "hello"
 }
 ```
+
+The test tool expects the response in base64, URLSAFE_NO_PADDING variant, encoded format.
 
 ### `public-key`
 
