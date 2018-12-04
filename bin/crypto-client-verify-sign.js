@@ -15,6 +15,7 @@ program
       }
     } catch(e) {
       console.log(e.message)
+      console.log(e.stack)
     }
     console.log('test fails')
   })

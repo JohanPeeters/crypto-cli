@@ -26,7 +26,8 @@ program
         return
       }
     } catch(e) {
-      console.log(e.message)
+      console.log(`cannot decrypt: ${e.message}`)
+      console.log(e.stack)
     }
     console.log('test fails')
   })
